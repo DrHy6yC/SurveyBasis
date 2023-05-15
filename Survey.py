@@ -10,20 +10,20 @@ class Survey():
     def inputSurvey(self, objectFile):
         FILENAME = objectFile
         with open(FILENAME, "r", newline="") as file:
-            reader = csv.DictReader(file, delimiter=';', quoting=csv.QUOTE_NONE)
-            i = 1
-            for row in reader:
-                self.questions[i] = row["Question"]
-                self.answers[i] = {
-                    1: row["Answer1"],
-                    2: row["Answer2"],
-                    3: row["Answer3"],
-                    4: row["Answer4"]}
-                self.answersTrue[i] = int(row["TrueAnswer"])
-                i+=1
+            dictReaderExt = csv.DictReader(file, delimiter=';', quoting=csv.QUOTE_NONE)
+            keyDict = 1
+            for rowDictExt in dictReaderExt:
+                self.questions[keyDict] = rowDictExt["Question"]
+                self.answers[keyDict] = {
+                    1: rowDictExt["Answer1"],
+                    2: rowDictExt["Answer2"],
+                    3: rowDictExt["Answer3"],
+                    4: rowDictExt["Answer4"]}
+                self.answersTrue[keyDict] = int(rowDictExt["TrueAnswer"])
+                keyDict+=1
     
-    def getAnswerUser (self,numberQuestion, numberAnswer):
-        self.answersUser[numberQuestion] = numberAnswer
+    def setAnswersUser (self,numberQuestion, numberAnswerUser):
+        self.answersUser[numberQuestion] = numberAnswerUser
     
     def endSurvey(self):
         isEnd = False
@@ -33,31 +33,45 @@ class Survey():
     
     def compareAnswer(self):
         if self.endSurvey:
-            for i in self.questions:
-                if self.answersTrue[i] == self.answersUser[i]:
+            for keyDict in self.questions:
+                if self.answersTrue[keyDict] == self.answersUser[keyDict]:
                     self.resultSurvey = True
                 else:
                     self.resultSurvey = False
                     break
+    
+    def getDict(self,dict, key):
+        print(dict[key])
+        
 
-
-    def takingSurvey(self):
-        for i in self.questions:
-            print(self.questions[i])
-            for a in self.answers[i]:
-                print(a, self.answers[i][a])
-            self.getAnswerUser(i, int(input("Введите номер ответа: ")))
+    def takingSurveyInConsole(self):
+        for keyDict in self.questions:
+            print(self.questions[keyDict])
+            for answer in self.answers[keyDict]:
+                print(answer, self.answers[keyDict][answer])
+            self.setAnswersUser(keyDict, int(input("Введите номер ответа: ")))
 
     def getResultSurvey(self):
         if self.resultSurvey:
             print("Тест пройден")
         else:
             print("Тест не пройден")
+    
+    def getResultSurveyTest(self):
+        if self.resultSurvey:
+            return "Тест пройден"
+        else:
+            return "Тест не пройден"
 
+    def getResultSelectedAnswer(self):
+        text = ""
+        for numberAnswer, answer in self.answersUser.items():
+            text = text + "Question №"+ str(numberAnswer) + " Answer: " + str(answer) + "\n"
+        return text
+    
+    def getUserAnswers(self):
+        for numberAnswer, answer in self.answersUser.items():
+            print(numberAnswer, answer)
 
-
-test = Survey()
-test.inputSurvey("users.csv")
-test.takingSurvey()
-test.compareAnswer()
-test.getResultSurvey()
+    def getLastIndex(self):
+        return len(self.questions)
