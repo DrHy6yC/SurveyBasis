@@ -18,12 +18,15 @@ class Test(QMainWindow, Survey):
         self.numberQuestion = Constant.numberQuestionStart
         self.setTextUI(self.numberQuestion)
         self.setTextObjectUI(self.ui.label, Constant.testGrammar)
-        self.createEvent(Constant.nameEventEndTest, self.resultOutput)
+        self.createEvent(Constant.nameEventEndTest, self.endChangeUI)
         
     def createEvent(self, nameEvent, funcEvent):
         setattr(self, nameEvent, EventUI())
         print(getattr(self, nameEvent))
         getattr(self, nameEvent).signalUI.connect(funcEvent)
+
+    def changeButtEvent(self):
+        self.ui.pushButton_1.clicked.connect(lambda: self.nextQuestion(1))
     
     def createButtonEvent(self,nameEvent, funcEvent):
         setattr(self, nameEvent, EventUI())
@@ -33,18 +36,18 @@ class Test(QMainWindow, Survey):
     def setDictButtons(self):
         i = 1
         for typeUI in self.ui.__dict__.values():
-            if  type(typeUI) == QPushButton: 
+            if type(typeUI) == QPushButton:
                 self.dictButtons[i] = typeUI
                 i += 1
 
     def setFunctionButton(self):
-        #for value in self.dictButtons.values():
-        #    value.clicked.connect()
-        
-        self.dictButtons[1].clicked.connect(lambda: self.nextQuestion(1))
-        self.dictButtons[2].clicked.connect(lambda: self.nextQuestion(2))
-        self.dictButtons[3].clicked.connect(lambda: self.nextQuestion(3))
-        self.dictButtons[4].clicked.connect(lambda: self.nextQuestion(4))
+        for key, button in self.dictButtons.items():
+            button.clicked.connect(self.nextQuestion)
+
+        #self.dictButtons[1].clicked.connect(lambda: self.nextQuestion(1))
+        #self.dictButtons[2].clicked.connect(lambda: self.nextQuestion(2))
+        #self.dictButtons[3].clicked.connect(lambda: self.nextQuestion(3))
+        #self.dictButtons[4].clicked.connect(lambda: self.nextQuestion(4))
     
     def setTextObjectUI(self, objectUI, inputText):
         _translate = QtCore.QCoreApplication.translate
@@ -62,16 +65,12 @@ class Test(QMainWindow, Survey):
     
     def setTextUI(self, numberQuestion):
         self.setTextObjectUI(self.ui.textEdit, self.questions[numberQuestion])
-        self.setTextObjectUI(self.dictButtons[1], self.answers[numberQuestion][1])
-        self.setTextObjectUI(self.dictButtons[2], self.answers[numberQuestion][2])
-        self.setTextObjectUI(self.dictButtons[3], self.answers[numberQuestion][3])
-        self.setTextObjectUI(self.dictButtons[4], self.answers[numberQuestion][4])
+        for key, button in self.dictButtons.items():
+            self.setTextObjectUI(button, self.answers[numberQuestion][key])
     
-    def resultOutput(self):
-        self.dictButtons[1].setVisible(False)
-        self.dictButtons[2].setVisible(False)
-        self.dictButtons[3].setVisible(False)
-        self.dictButtons[4].setVisible(False)
+    def endChangeUI(self):
+        for button in self.dictButtons.values():
+            button.setVisible(False)
         self.ui.textEdit.setGeometry(QtCore.QRect(20, 100, 450, 490))
 
 
