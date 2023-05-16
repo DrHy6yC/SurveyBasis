@@ -1,48 +1,48 @@
 Question;Answer1;Answer2;Answer3;Answer4;TrueAnswer;NumberQustion
-"""Hello Sara, ______?"" – ""I'm very well, thank you.""";How do you;How are you;How you are;How is it;2;1
-"""What's ______ name?"" – ""Jane Edwards.""";you;your;yours;you're;2;2
-"""How old are you?"" – ""______.""";I twenty;Me is twenty;I've tventy;I'm twenty;4;3
-"""Is this your book?"" – ""______.""";No, it isn't;No, isn't it;No, he isn't;No, there isn't;1;4
-"""Where is Anna from?"" – ""______ from Rome.""";It is;Her is;He is;She is;4;5
-"""______ is your address?"" – ""12, Sundown Street, Bristol.""";How;Who;What;That;3;6
+"Hello Sara, ______?" - "I'm very well, thank you.";How do you;How are you;How you are;How is it;2;1
+"What's ______ name?" - "Jane Edwards.";you;your;yours;you're;2;2
+"How old are you?" - "______.";I twenty;Me is twenty;I've tventy;I'm twenty;4;3
+"Is this your book?" - "______.";No, it isn't;No, isn't it;No, he isn't;No, there isn't;1;4
+"Where is Anna from?" - "______ from Rome.";It is;Her is;He is;She is;4;5
+"______ is your address?" - "12, Sundown Street, Bristol.";How;Who;What;That;3;6
 ______ name is John Smith.;His;He's;He;Her;1;7
 Sam ______ a doctor, he's a teacher at the university.;aren't;isn't;not;doesn't;2;8
 Here are Juan and Mercedes. ______ are from Valencia in Spain.;They;Their;Them;This;1;9
-"""Have you got a computer?"" – ""Yes, ______.""";I got;I've got;I've;I have;4;10
+"Have you got a computer?" - "Yes, ______.";I got;I've got;I've;I have;4;10
 ______ two hundred students in my school.;They are;It is;There are;There is;3;11
-"""Do you live in Munich?"" – ""Yes, ______.""";I live;I don't;I do live;I do;4;12
-"""Is that ______ car?"" – ""No, it isn't.""";they;their;there;they're;2;13
-"""______ is this blue bag?"" – ""It's ?5.50.""";Where;How big;How much;What;3;14
-"""What's her job?"" – ""She's ______.""";a actress;actress;the actress;an actress;4;15
-"""______ your car?"" – ""It's in the car park.""";Which is;Who's;When's;Where's;4;16
-"""______ bag is this?"" – ""It's mine.""";Whose;What's;Who's;Who;1;17
+"Do you live in Munich?" - "Yes, ______.";I live;I don't;I do live;I do;4;12
+"Is that ______ car?" - "No, it isn't.";they;their;there;they're;2;13
+"______ is this blue bag?" - "It's $5.50.";Where;How big;How much;What;3;14
+"What's her job?" - "She's ______.";a actress;actress;the actress;an actress;4;15
+"______ your car?" - "It's in the car park.";Which is;Who's;When's;Where's;4;16
+"______ bag is this?" - "It's mine.";Whose;What's;Who's;Who;1;17
 ______ only three chairs in my room.;They are;There are;There is;It is;2;18
 She ______ a house in the town centre.;got;have got;has got;is got;3;19
-"""______ brothers have you got?"" – ""Only one.""";How much;How old;How are;How many;4;20
-"""Is there any food left?"" – ""______.""";No, there isn't;Yes, there is any;Yes, they is;No, there aren't;1;21
+"______ brothers have you got?" - "Only one.";How much;How old;How are;How many;4;20
+"Is there any food left?" - "______.";No, there isn't;Yes, there is any;Yes, they is;No, there aren't;1;21
 My favourite painters are Monet and Renoir but John doesn't like ______ at all.;they;them;it;some;2;22
 There aren't ______ people here today.;many;a lot;much;the many;1;23
 We haven't got ______.;some children;any children;a children;one children;2;24
-"""Do you speak Japanese?"" – ""No, I ______.""";don't speak;not;speak not;don't;4;25
-"""What does he do?"" – ""______.""";He's teacher;He's a teacher;He's teaching;Yes, he does;2;26
+"Do you speak Japanese?" - "No, I ______.";don't speak;not;speak not;don't;4;25
+"What does he do?" - "______.";He's teacher;He's a teacher;He's teaching;Yes, he does;2;26
 He ______ in an office every morning from eight to twelve.;working;works;work;am working;2;27
-"""Do you like ______?"" – ""Yes, I do.""";to shop;shop;to shopping;shopping;4;28
+"Do you like ______?" - "Yes, I do.";to shop;shop;to shopping;shopping;4;28
 I go ______ school in Vienna.;at;to;in;on;2;29
 We have lunch ______ one o'clock.;at;to;in;on;1;30
 She works ______ Saturday.;at;to;in;on;4;31
 I stay at home ______ the morning.;at;to;in;on;3;32
-"""How do you get to work?"" – ""______.""";By car;In car;By the car;On car;1;33
-"""Do you like classical music?"" – ""______.""";Yes, I likes;Yes, I like;Yes, I does;Yes, I do;4;34
-"""Where is Mary?"" – ""She ______ over there.""";is stand;is standing;stand;standing;2;35
+"How do you get to work?" - "______.";By car;In car;By the car;On car;1;33
+"Do you like classical music?" - "______.";Yes, I likes;Yes, I like;Yes, I does;Yes, I do;4;34
+"Where is Mary?" - "She ______ over there.";is stand;is standing;stand;standing;2;35
 I'm hungry. ______ something to eat, please;I like;I'd want;I'd like;I'm like;3;36
 He ______ born in 1963 in Spain.;had;is;was;did;3;37
 Switzerland is ______ than Britain.;as small;smallest;more small;smaller;4;38
 Motor racing is the ______ sport in the world.;most expensive;expensivest;more expensive;as expensive;1;39
 He passed his English exam very ______.;easy;easier;good;easily;4;40
-"""When ______ you go to the USA?"" – ""Last year.""";did;was;went;have;1;41
-"""Did she stay with friends?"" – ""______.""";No, she didn't;No, she didn't stay;No, she stayed not;No, she didn't stayed;1;42
+"When ______ you go to the USA?" - "Last year.";did;was;went;have;1;41
+"Did she stay with friends?" - "______.";No, she didn't;No, she didn't stay;No, she stayed not;No, she didn't stayed;1;42
 She's never ______ to New York.;gone;was;been;went;3;43
-"""I haven't got any money."" – ""Never mind. ______ some from the bank.""";I'll get;I'm getting;I get;I'd get;1;44
+"I haven't got any money." - "Never mind. ______ some from the bank.";I'll get;I'm getting;I get;I'd get;1;44
 ______ you ever visited London?;Did;Do;Were;Have;4;45
 He's learning ______ a lorry.;to drive;driving;drive;the driving;1;46
 I can't stand ______ in hot weather.;to walk;walking;walk;to walking;2;47

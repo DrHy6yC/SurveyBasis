@@ -20,7 +20,7 @@ class Survey():
                     3: rowDictExt["Answer3"],
                     4: rowDictExt["Answer4"]}
                 self.answersTrue[keyDict] = int(rowDictExt["TrueAnswer"])
-                keyDict+=1
+                keyDict += 1
     
     def setAnswersUser (self,numberQuestion, numberAnswerUser):
         self.answersUser[numberQuestion] = numberAnswerUser
