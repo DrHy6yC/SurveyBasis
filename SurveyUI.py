@@ -4,7 +4,7 @@ class EventUI(QtCore.QObject):
     signalUI = QtCore.pyqtSignal()
 
 
-class Ui_MainWindow(object):
+class MainWinUI(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(480, 640)

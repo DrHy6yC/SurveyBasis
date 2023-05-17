@@ -25,14 +25,14 @@ class Survey():
     def setAnswersUser (self,numberQuestion, numberAnswerUser):
         self.answersUser[numberQuestion] = numberAnswerUser
     
-    def endSurvey(self):
+    def isEndSurvey(self):
         isEnd = False
         if len(self.answers) == len(self.answersUser):
             isEnd = True
         return isEnd
     
     def compareAnswer(self):
-        if self.endSurvey:
+        if self.isEndSurvey:
             for keyDict in self.questions:
                 if self.answersTrue[keyDict] == self.answersUser[keyDict]:
                     self.resultSurvey = True
@@ -64,7 +64,7 @@ class Survey():
             return "Тест не пройден"
 
     def getResultSelectedAnswer(self):
-        text = ""
+        text = f"Пользователь набрал {str(self.getScoreUser())} баллов\nЭто уровень {self.getLevelUser()}!\n"
         for numberAnswer, answer in self.answersUser.items():
             text = text + "Question №"+ str(numberAnswer) + " Answer: " + str(answer) + "\n"
         return text
@@ -73,5 +73,25 @@ class Survey():
         for numberAnswer, answer in self.answersUser.items():
             print(numberAnswer, answer)
 
-    def getLastIndex(self):
+    def getLastIndexQuestions(self):
         return len(self.questions)
+
+    def getScoreUser(self):
+        scoreUser = 0
+        if self.isEndSurvey:
+            for key in self.answersTrue.keys():
+                if self.answersTrue[key] == self.answersUser[key]:
+                    scoreUser += 1
+        return scoreUser
+    
+    def getLevelUser(self):
+        levelUser = ""
+        if self.getScoreUser() <= 30:
+            levelUser = "Elementary (A1)"
+        elif 30 > self.getScoreUser() >= 60:
+            levelUser = "Pre-Intermediate (A2)"
+        elif 60 > self.getScoreUser() >= 90:
+            levelUser = "Intermediate (B1)"
+        else:
+            levelUser = "Upper Intermediate (B2)"
+        return levelUser
