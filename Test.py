@@ -6,25 +6,79 @@ from SurveyUI import MainWinUI, EventUI
 from LoginUI import LogWinUI
 from Survey import Survey
 from User import User
-import Constant 
+import Constant
+
 
 class LoginWin(QMainWindow):
     def __init__(self):
         super(LoginWin,self).__init__()
         self.logWinUI = LogWinUI()
         self.logWinUI.setupUi(self)
-        self.logWinUI.pushButtonLogin.clicked.connect(showMainWin)
+        self.loginUser = self.logWinUI.lineEditLogin
+        self.passUser = self.logWinUI.lineEditPass
+        self.logWinUI.pushButtonLogin.clicked.connect(self.letUserIn)
         self.logWinUI.pushButtonSignUp.clicked.connect(self.addUser)
-    
-    
+        # Дописать команду что бы входил при нажатии на Enter
+
+    def letUserIn(self):
+        if self.isInPasswords():
+            showMainWin()    
 
     def addUser(self):
-        with open("users.csv", "a", newline="") as file:
-            columns = ["nameUser", "passUser"]
-            writer = csv.DictWriter(file, delimiter=';', fieldnames=columns)
-            writer.writerow({"nameUser": self.logWinUI.lineEditLogin.text(), 
-                                "passUser": self.logWinUI.lineEditPass.text()})        
+        fileNameCSV = "users.csv"
+        listColumns = ["id", "nameUser", "passUser"]
+        textLoginLE = self.loginUser.text()
+        textPassLE = self.passUser.text()
+        if not self.isInUsers():
+            self.addInFileCSV(fileNameCSV,listColumns, 
+                            id = Constant.idLast, 
+                            nameUser = textLoginLE,
+                            passUser = textPassLE
+            )
+            showMainWin()
+        else:
+            pass  #добавить событие если такой логин уже есть.
 
+    def addInFileCSV(self, fileNameCSV, columns, **kwargs):
+        with open(fileNameCSV, "a", newline="") as file:
+            dictCol = dict()
+            writer = csv.DictWriter(file, delimiter=';', fieldnames=columns)
+            for column in columns:
+                dictCol[column] = kwargs[column] 
+            writer.writerow(dictCol)
+
+    def isInUsers(self):
+        textLoginLE = self.loginUser.text()
+        isInUsers = False
+        if textLoginLE in self.getUsersList():
+            isInUsers = True
+        return isInUsers
+    
+    def isInPasswords(self):
+        textPassLE = self.passUser.text()
+        textLoginLE = self.loginUser.text()
+        dictUsers = self.getUsersDict()
+        isInUsersPass = False
+        if textPassLE == dictUsers[textLoginLE]:
+            isInUsersPass = True
+        return isInUsersPass
+    
+    def getUsersList(self):
+        usersList = list()
+        with open("users.csv", "r", newline="") as file:
+            reader = csv.DictReader(file, delimiter=';')
+            for row in reader:
+                usersList.append(row["nameUser"])
+        return usersList
+    
+    def getUsersDict(self):
+        usersDict = dict()
+        with open("users.csv", "r", newline="") as file:
+            reader = csv.DictReader(file, delimiter=';')
+            for row in reader:
+                usersDict[row["nameUser"]] = row["passUser"]
+        return usersDict
+        
 
 class Test(QMainWindow, Survey): 
     def __init__(self):
@@ -42,7 +96,6 @@ class Test(QMainWindow, Survey):
 
     def createEvent(self, nameEvent, funcEvent):
         setattr(self, nameEvent, EventUI())
-        print(getattr(self, nameEvent))
         getattr(self, nameEvent).signalUI.connect(funcEvent)
 
     def setDictButtons(self):

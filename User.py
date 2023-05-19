@@ -2,7 +2,8 @@ import Constant
 import random
 class User():
     def __init__(self):
-        self.nameUser = "User_" + str(Constant.numberLastRegUser)
+        self.idUser = Constant.idLast
+        self.nameUser = "User_" + str(Constant.numberLastRegUnknownUser)
         self.passUser = self.generatedPass()
         self.levelUser = "Unknown (A0)"
         self.accessRights = Constant.accessRights[0]
