@@ -1,5 +1,4 @@
 import sys
-import csv
 from PyQt5.QtWidgets import *
 from PyQt5 import QtCore
 from SurveyUI import MainWinUI, EventUI
@@ -18,66 +17,25 @@ class LoginWin(QMainWindow):
         self.passUser = self.logWinUI.lineEditPass
         self.logWinUI.pushButtonLogin.clicked.connect(self.letUserIn)
         self.logWinUI.pushButtonSignUp.clicked.connect(self.addUser)
-        # Дописать команду что бы входил при нажатии на Enter
+        self.user = User()
+        #todo Дописать команду что бы входил при нажатии на Enter
 
     def letUserIn(self):
-        if self.isInPasswords():
+        if self.user.isInPasswords(self.loginUser.text(),self.passUser.text(), self):
             showMainWin()    
 
     def addUser(self):
-        fileNameCSV = "users.csv"
-        listColumns = ["id", "nameUser", "passUser"]
-        textLoginLE = self.loginUser.text()
-        textPassLE = self.passUser.text()
-        if not self.isInUsers():
-            self.addInFileCSV(fileNameCSV,listColumns, 
-                            id = Constant.idLast, 
-                            nameUser = textLoginLE,
-                            passUser = textPassLE
-            )
+        idLastName = "idLast"
+        idLastValue = Constant.getParam(idLastName)
+        if not self.user.isInUsers(self.loginUser.text()):
+            self.user.addUser(self.loginUser.text(),self.passUser.text())
+            idLastValue += 1
+            Constant.setParam(idLastName, idLastValue)
             showMainWin()
         else:
-            pass  #добавить событие если такой логин уже есть.
-
-    def addInFileCSV(self, fileNameCSV, columns, **kwargs):
-        with open(fileNameCSV, "a", newline="") as file:
-            dictCol = dict()
-            writer = csv.DictWriter(file, delimiter=';', fieldnames=columns)
-            for column in columns:
-                dictCol[column] = kwargs[column] 
-            writer.writerow(dictCol)
-
-    def isInUsers(self):
-        textLoginLE = self.loginUser.text()
-        isInUsers = False
-        if textLoginLE in self.getUsersList():
-            isInUsers = True
-        return isInUsers
-    
-    def isInPasswords(self):
-        textPassLE = self.passUser.text()
-        textLoginLE = self.loginUser.text()
-        dictUsers = self.getUsersDict()
-        isInUsersPass = False
-        if textPassLE == dictUsers[textLoginLE]:
-            isInUsersPass = True
-        return isInUsersPass
-    
-    def getUsersList(self):
-        usersList = list()
-        with open("users.csv", "r", newline="") as file:
-            reader = csv.DictReader(file, delimiter=';')
-            for row in reader:
-                usersList.append(row["nameUser"])
-        return usersList
-    
-    def getUsersDict(self):
-        usersDict = dict()
-        with open("users.csv", "r", newline="") as file:
-            reader = csv.DictReader(file, delimiter=';')
-            for row in reader:
-                usersDict[row["nameUser"]] = row["passUser"]
-        return usersDict
+            QMessageBox.about(self, "Ошибка", "Такой логин уже существует")
+            #todo Добавить логирование о том что такой логин уже есть
+            #todo Добавить возможность выбора востановить пароль
         
 
 class Test(QMainWindow, Survey): 

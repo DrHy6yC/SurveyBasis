@@ -65,9 +65,7 @@ class LogWinUI(object):
         _translate = QtCore.QCoreApplication.translate
         LoginWindow.setWindowTitle(_translate("LoginWindow", "Survey"))
         self.labelWelcom.setText(_translate("LoginWindow", "Welcom to the Survey system!"))
-        #self.lineEditLogin.setText(_translate("LoginWindow", "Dr.Hy6yC"))
         self.labelLogin.setText(_translate("LoginWindow", "Login:"))
-        #self.lineEditPass.setText(_translate("LoginWindow", "Dr.Hy6yC"))
         self.labelPass.setText(_translate("LoginWindow", "Password:"))
         self.pushButtonLogin.setText(_translate("LoginWindow", "Login"))
         self.checkBoxFPass.setText(_translate("LoginWindow", "Click if forgot password"))

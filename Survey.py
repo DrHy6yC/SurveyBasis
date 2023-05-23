@@ -1,26 +1,20 @@
-import csv
+import ReadFile
 class Survey():
     def __init__(self):
-        self.questions = {}
-        self.answers = {}
-        self.answersTrue = {}
-        self.answersUser = {}
+        self.questions = dict()
+        self.answers = dict()
+        self.answersTrue = dict()
+        self.answersUser = dict()
         self.resultSurvey = False
 
-    def inputSurvey(self, objectFile):
-        FILENAME = objectFile
-        with open(FILENAME, "r", newline="") as file:
-            dictReaderExt = csv.DictReader(file, delimiter=';', quoting=csv.QUOTE_NONE)
-            keyDict = 1
-            for rowDictExt in dictReaderExt:
-                self.questions[keyDict] = rowDictExt["Question"]
-                self.answers[keyDict] = {
-                    1: rowDictExt["Answer1"],
-                    2: rowDictExt["Answer2"],
-                    3: rowDictExt["Answer3"],
-                    4: rowDictExt["Answer4"]}
-                self.answersTrue[keyDict] = int(rowDictExt["TrueAnswer"])
-                keyDict += 1
+    def inputSurvey(self, fileName):
+        listDictsSurvey = ReadFile.CSV.getSurvey(fileName,
+        ["Question", "Answer1", "Answer2", "Answer3", "Answer4", "TrueAnswer",]
+        )
+        self.questions = listDictsSurvey[0]
+        self.answers = listDictsSurvey[1]
+        self.answersTrue = listDictsSurvey[2]
+
     
     def setAnswersUser (self,numberQuestion, numberAnswerUser):
         self.answersUser[numberQuestion] = numberAnswerUser
