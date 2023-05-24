@@ -1,5 +1,3 @@
-import random
-from symbol import parameters
 from PyQt5.QtWidgets import *
 import ReadFile
 import WriteFile
@@ -8,20 +6,19 @@ class User():
     def __init__(self):
         self.idUser = Constant.idLast
         self.nameUser = "User_" + str(Constant.numberLastRegUnknownUser)
-        self.passUser = self.generatedPass()
+        self.passUser = Constant.generatedPass()
         self.levelUser = "Unknown (A0)"
         self.accessRights = Constant.accessRights[0]
-        self.emailUser = "dr.hy6yc@gmail.com"
-        self.phone = 89181385293
-        self.loginTelegram = "dr.hy6yc"
+        self.emailUser = ""
+        self.phone = 0
+        self.loginTelegram = self.nameUser
 
-    def generatedPass(self):
-        x = random.randint(9000000000000, 10000000000000000000000)
-        return str(x)
        
     def addUser(self, user, password):
         fileNameCSV = "users.csv"
         listColumns = ["id", "nameUser", "passUser"]
+        self.nameUser = user
+        self.passUser = password
         WriteFile.CSV.setColumns(fileNameCSV,listColumns, 
                             id = Constant.idLast, 
                             nameUser = user,
@@ -62,3 +59,6 @@ class User():
     def getUsersDict(self):
         usersDict = ReadFile.CSV.getDictTwoColumns("users.csv", "nameUser", "passUser")
         return usersDict
+    
+    def setUserParam(self, param):
+        pass

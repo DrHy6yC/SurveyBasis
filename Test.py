@@ -5,6 +5,7 @@ from SurveyUI import MainWinUI, EventUI
 from LoginUI import LogWinUI
 from Survey import Survey
 from User import User
+import ReadFile
 import Constant
 
 
@@ -19,18 +20,39 @@ class LoginWin(QMainWindow):
         self.logWinUI.pushButtonSignUp.clicked.connect(self.addUser)
         self.user = User()
         #todo Дописать команду что бы входил при нажатии на Enter
+    
+    def setUser(self):
+        self.user.nameUser = self.loginUser.text()
+        self.user.passUser = self.passUser.text()
+        self.user.idUser = ReadFile.CSV.getValueOnParam(self.user.nameUser,
+                                                        "users.csv", 
+                                                        "nameUser",
+                                                        "idUser"
+                                                        )
 
     def letUserIn(self):
         if self.user.isInPasswords(self.loginUser.text(),self.passUser.text(), self):
-            showMainWin()    
+            self.setUser()
+            showMainWin() 
 
     def addUser(self):
         idLastName = "idLast"
-        idLastValue = Constant.getParam(idLastName)
-        if not self.user.isInUsers(self.loginUser.text()):
-            self.user.addUser(self.loginUser.text(),self.passUser.text())
+        idLastValue = Constant.idLast
+        numLastName = "numberLastRegUnknownUser"
+        numberLastValue = Constant.numberLastRegUnknownUser
+        loginUser = self.loginUser.text()
+        passUser = self.passUser.text()
+        if not self.user.isInUsers(loginUser):
+            if loginUser == "":
+                loginUser = "User_" + str(numberLastValue)
+                numberLastValue += 1
+                Constant.setParam(numLastName, numberLastValue)
+            if passUser == "":
+                passUser = Constant.generatedPass()
+            self.user.addUser(loginUser,passUser)
             idLastValue += 1
             Constant.setParam(idLastName, idLastValue)
+            self.setUser() 
             showMainWin()
         else:
             QMessageBox.about(self, "Ошибка", "Такой логин уже существует")
@@ -51,6 +73,7 @@ class Test(QMainWindow, Survey):
         self.setTextOnTestUI(self.numberQuestion)
         self.setTextObjectUI(self.mainWinUI.label, Constant.testGrammar)
         self.createEvent(Constant.nameEventEndTest, self.endChangeUI)
+        self.user = User()
 
     def createEvent(self, nameEvent, funcEvent):
         setattr(self, nameEvent, EventUI())
@@ -82,6 +105,7 @@ class Test(QMainWindow, Survey):
         for button in self.dictButtons.values():
             button.setVisible(False)
         self.mainWinUI.textEdit.setGeometry(QtCore.QRect(20, 100, 450, 490))
+        print(self.user.__dict__)
 
     def nextQuestion(self, numberButton):
         self.setAnswersUser(self.numberQuestion, numberButton)
@@ -98,6 +122,7 @@ class Test(QMainWindow, Survey):
 if __name__ == "__main__":
     def showMainWin():
         mainWin.show()
+        mainWin.user = logWin.user
         logWin.close()
 
     app = QApplication(sys.argv)

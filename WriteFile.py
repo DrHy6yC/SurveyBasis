@@ -14,6 +14,3 @@ class JSON():
     def setParametrs(fileNameCSV, data):
         with open(fileNameCSV, 'w') as file:
             json.dump(data, file, ensure_ascii=False, indent=4)
-
-if __name__ == "__main__":
-    pass

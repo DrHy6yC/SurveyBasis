@@ -8,9 +8,8 @@ class Survey():
         self.resultSurvey = False
 
     def inputSurvey(self, fileName):
-        listDictsSurvey = ReadFile.CSV.getSurvey(fileName,
-        ["Question", "Answer1", "Answer2", "Answer3", "Answer4", "TrueAnswer",]
-        )
+        listColumn = ["Question", "Answer1", "Answer2", "Answer3", "Answer4", "TrueAnswer"]
+        listDictsSurvey = ReadFile.CSV.getSurvey(fileName, listColumn)
         self.questions = listDictsSurvey[0]
         self.answers = listDictsSurvey[1]
         self.answersTrue = listDictsSurvey[2]
