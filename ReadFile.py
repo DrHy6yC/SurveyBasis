@@ -2,7 +2,7 @@ import json
 import csv
 
 class CSV():
-    def getSurvey(self, fileNameCSV, columnSurwey):
+    def getSurvey(fileNameCSV, columnSurwey):
         questions = dict()
         answers = dict()
         answersTrue = dict()
@@ -21,7 +21,7 @@ class CSV():
                 keyDict += 1
         return [questions, answers, answersTrue]
 
-    def getDictTwoColumns(self, fileNameCSV, columnNameKey, columnNameValues):
+    def getDictTwoColumns(fileNameCSV, columnNameKey, columnNameValues):
         usersDict = dict()
         with open(fileNameCSV, "r", newline="") as file:
             reader = csv.DictReader(file, delimiter=';')
@@ -29,7 +29,7 @@ class CSV():
                     usersDict[row[columnNameKey]] = row[columnNameValues]
         return usersDict
         
-    def getListOneColumn(self, fileNameCSV,columnName):
+    def getListOneColumn(fileNameCSV, columnName):
         usersList = list()
         with open(fileNameCSV, "r", newline="") as file:
                 reader = csv.DictReader(file, delimiter=';')
@@ -37,9 +37,9 @@ class CSV():
                     usersList.append(row[columnName])
         return usersList
     
-    def getValueOnParam(self, key, fileNameCSV, columnNameKey, columnNameValues):
+    def getValueOnParam(key, fileNameCSV, columnNameKey, columnNameValues):
         value = ""
-        dictUsers = self.getDictTwoColumns(fileNameCSV, columnNameKey, columnNameValues)
+        dictUsers = CSV.getDictTwoColumns(fileNameCSV, columnNameKey, columnNameValues)
         value = dictUsers[key]
         return value
                 
@@ -49,3 +49,6 @@ class JSON():
         with open(filename, "r", ) as file:
             data = json.load(file)
         return data
+
+if __name__ == "__main__":
+    print(CSV.getValueOnParam("adminwf", "users.csv", "nameUser", "levelUser"))

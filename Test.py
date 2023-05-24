@@ -6,6 +6,7 @@ from LoginUI import LogWinUI
 from Survey import Survey
 from User import User
 import ReadFile
+import WriteFile
 import Constant
 
 
@@ -105,7 +106,7 @@ class Test(QMainWindow, Survey):
         for button in self.dictButtons.values():
             button.setVisible(False)
         self.mainWinUI.textEdit.setGeometry(QtCore.QRect(20, 100, 450, 490))
-        print(self.user.__dict__)
+        
 
     def nextQuestion(self, numberButton):
         self.setAnswersUser(self.numberQuestion, numberButton)
@@ -124,7 +125,7 @@ if __name__ == "__main__":
         mainWin.show()
         mainWin.user = logWin.user
         logWin.close()
-
+        
     app = QApplication(sys.argv)
     logWin = LoginWin()
     logWin.show()

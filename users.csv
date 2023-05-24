@@ -1,4 +1,4 @@
-id;nameUser;passUser;levelUser;accessRights;emailUser;phone;loginTelegram
+idUser;nameUser;passUser;levelUser;accessRights;emailUser;phone;loginTelegram
 1;User_1;1457120920039804438347
 2;User_2;6427460200243909871215
 3;User_3;3584689168330903154293
@@ -17,3 +17,6 @@ id;nameUser;passUser;levelUser;accessRights;emailUser;phone;loginTelegram
 16;wedwed;wedwed
 17;User_13;8657628573544733338879
 18;adminwf;gfhjkzytn
+19;awsaca;eccec
+20;sedfsefe;wsefwefwef
+21;awdawdawd;awdwadw

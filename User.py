@@ -16,13 +16,14 @@ class User():
        
     def addUser(self, user, password):
         fileNameCSV = "users.csv"
-        listColumns = ["id", "nameUser", "passUser"]
         self.nameUser = user
         self.passUser = password
-        WriteFile.CSV.setColumns(fileNameCSV,listColumns, 
-                            id = Constant.idLast, 
-                            nameUser = user,
-                            passUser = password
+        WriteFile.CSV.setColumns(
+            fileNameCSV, 
+            ["idUser", "nameUser", "passUser"], 
+            idUser = Constant.idLast, 
+            nameUser = user,
+            passUser = password
         )
 
     def isUserInCSV(self, filename, user):
