@@ -6,6 +6,8 @@ class Survey():
         self.answersTrue = dict()
         self.answersUser = dict()
         self.resultSurvey = False
+        self.NUMBER_QUESTION = 1
+        self.inputSurvey("miniTest.csv")
 
     def inputSurvey(self, fileName):
         listColumn = ["Question", "Answer1", "Answer2", "Answer3", "Answer4", "TrueAnswer"]
@@ -76,7 +78,8 @@ class Survey():
                 if self.answersTrue[key] == self.answersUser[key]:
                     scoreUser += 1
         return scoreUser
-    
+
+
     def getLevelUser(self):
         levelUser = ""
         if self.getScoreUser() <= 30:
