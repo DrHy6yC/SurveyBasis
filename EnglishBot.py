@@ -13,7 +13,7 @@ async def on_shutdown(_):
     print('Off')
 
 
-API_TOKEN = '6205692915:AAED1qslN0ClG1MRXklleREfV0UR3KbNXEM'
+API_TOKEN = ''
 User_Surveys = dict()
 
 logging.basicConfig(level=logging.INFO)
