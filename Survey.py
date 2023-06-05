@@ -35,7 +35,7 @@ class Survey():
                     self.resultSurvey = False
                     break
     
-    def getDict(self,dict, key):
+    def getDict(self, dict, key):
         print(dict[key])
         
 
